@@ -67,6 +67,7 @@ def main():
     lr_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=3)
 
     device = torch.device('cuda')
+    model.cuda()
 
     epoch = 1
     best_loss = float('inf')
