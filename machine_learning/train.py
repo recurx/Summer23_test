@@ -66,7 +66,7 @@ def main():
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     lr_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=3)
 
-    device = torch.device('gpu')
+    device = torch.device('cuda')
 
     epoch = 1
     best_loss = float('inf')
