@@ -54,7 +54,7 @@ def val(model, val_loader, criterion, device):
 def main():
     dataset = model_py.RGBDataset()
     generator = torch.Generator().manual_seed(42)
-    train_dataset, val_dataset, test_dataset = random_split(dataset, [1000, 200, 200], generator=generator)
+    train_dataset, val_dataset, test_dataset = random_split(dataset, [0.01, 0.002, 0.988], generator=generator)
 
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False)
