@@ -54,7 +54,7 @@ def val(model, val_loader, criterion, device):
 def main():
     dataset = model_py.RGBDataset()
     generator = torch.Generator().manual_seed(42)
-    train_dataset, val_dataset, test_dataset = random_split(dataset, [0.01, 0.002, 0.988], generator=generator)
+    train_dataset, val_dataset, test_dataset = random_split(dataset, [0.1, 0.01, 0.89], generator=generator)
 
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False)
@@ -71,7 +71,7 @@ def main():
 
     epoch = 1
     best_loss = float('inf')
-    max_epochs = 10
+    max_epochs = 100
     while epoch <= max_epochs:
         print('Start epoch', epoch)
         train_loss = train(model, train_loader, criterion, optimizer, epoch, device)
@@ -83,7 +83,7 @@ def main():
         print('Val loss: %0.4f' % (val_loss))
         print('---------------------------------')
         # Save checkpoint if is best
-        if epoch % 5 == 0 and val_loss < best_loss:
+        if epoch % 2 == 0 and val_loss < best_loss:
             best_loss = val_loss
             state = {'model_state_dict': model.state_dict(),
                      'epoch': epoch,
