@@ -91,5 +91,5 @@ def get_img(idx, data_type):
 
 if __name__ == "__main__":
     pos_angles = get_pos_angles(119999, 'label')
-    cv2.imshow('Image', get_img(119999, 'label'))
+    cv2.imshow('Image', get_img(119999, 'input'))
     cv2.waitKey(0)
